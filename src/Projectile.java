@@ -9,6 +9,9 @@ public class Projectile extends Entity {
 	private int lifespan = 1000;
 	private int lifetime = 0;
 	public int dead;
+	public int width =10;
+	public int height = 5;
+	public int damage = 100;
 
 	public static int cooldown = 50;
 	public static int cooldowntimer;
@@ -37,4 +40,15 @@ public class Projectile extends Entity {
 	public void kill(){
 		dead = 1;
 	}
+
+	public void hitEnemy(Enemy e) {
+		if ((Math.abs(this.position[0] - e.position[0]) < this.width + e.hitbox) && (Math.abs(this.position[1] - e.position[1]) < this.height+ e.hitbox)) {
+			System.out.println("enemy hit");
+			e.removeHp(damage);
+		}
+
+	}
+
+
+
 }
