@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 public class Enemy extends Creature {
+
+	public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 	public int hitCooldown =50;
 	public int timeLeft;
@@ -10,6 +13,7 @@ public class Enemy extends Creature {
 		health = hp;
 		this.position = position;
 		this.hitbox = hitbox;
+		enemies.add(this);
 	}
 
 	public void kill() {

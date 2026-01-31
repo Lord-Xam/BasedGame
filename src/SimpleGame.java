@@ -11,8 +11,6 @@ public class SimpleGame extends Frame {
 
 	// enemies list
 	final float monsterSpeed =  30f;
-	public Enemy bat = new Enemy(new float[]{0,0},monsterSpeed,100,5);
-	public Enemy[] Enemies = {bat};
 
 
 
@@ -31,6 +29,7 @@ public class SimpleGame extends Frame {
 		setTitle("Simple Game");
 		setSize(WIDTH, HEIGHT);
 		setVisible(true);
+		new Enemy(new float[]{0,0},monsterSpeed,100,5);
 		// Add additional setup like listeners here
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -108,8 +107,8 @@ public class SimpleGame extends Frame {
 			last_time = time;
 
 			// update enemy following
-			 for (int i = 0 ; i < Enemies.length; i++ ) {
-			 Enemies[i].update(VanHelsing,deltaTime);
+			 for (int i = 0 ; i < Enemy.enemies.size(); i++ ) {
+			 Enemy.enemies.get(i).update(VanHelsing,deltaTime);
 			 }
 			
 			// update player's velocity
@@ -157,9 +156,9 @@ public class SimpleGame extends Frame {
 					Map.convertPos(Projectile.projectiles.get(i).position)[1], Projectile.projectiles.get(i).width, Projectile.projectiles.get(i).height);
 		}
 		// draw enemies
-		 for(int i=0; i < Enemies.length ; i++) {
+		 for(int i=0; i < Enemy.enemies.size() ; i++) {
 		 g.setColor(Color.RED);
-		 g.fillRect(Map.convertPos(Enemies[i].position)[0],Map.convertPos(Enemies[i].position)[1],50, 50); // Example for player or an
+		 g.fillRect(Map.convertPos(Enemy.enemies.get(i).position)[0],Map.convertPos(Enemy.enemies.get(i).position)[1],50, 50); // Example for player or an
 		 }
 	}
 
@@ -167,8 +166,8 @@ public class SimpleGame extends Frame {
 		// Update positions and check for collisions
 		
 			for (int i = 0; i < Projectile.projectiles.size(); i++) {
-				for(int j =0; j<Enemies.length; j++) {
-					Projectile.projectiles.get(i).hitEnemy(Enemies[j]);
+				for(int j =0; j<Enemy.enemies.size(); j++) {
+					Projectile.projectiles.get(i).hitEnemy(Enemy.enemies.get(j));
 				}
 				if (Projectile.projectiles.get(i).dead == 0)
 					Projectile.projectiles.get(i).update(deltaTime);
