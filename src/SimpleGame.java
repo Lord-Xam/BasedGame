@@ -5,6 +5,8 @@ public class SimpleGame extends Frame {
 
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
+	public int deltaTime;
+
 	private Player VanHelsing = new Player();
 
 
@@ -33,21 +35,24 @@ public class SimpleGame extends Frame {
 		gameLoop();
 	}
 
+	long last_time = System.nanoTime();
 	public void gameLoop() {
 		while (true) {
+			long time = System.nanoTime();
+			deltaTime = (int) ((time - last_time) / 1000000);
+			last_time = time;
+
 			// update enemy following
 			for (int i = 0 ; i < Enemies.length; i++ ) {
 				Enemies[i].followPlayer(VanHelsing);
 			}
 
+			for (Projectile p : Projectile.projectiles) {
+				p.fly(deltaTime);
+			}
 
 			updateGameState();
 			repaint();
-			try {
-				Thread.sleep(16); // Approx. 60 FPS
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -57,6 +62,8 @@ public class SimpleGame extends Frame {
 		g.fillRect(0,0,WIDTH,HEIGHT);
 		g.setColor(Color.BLUE);
 		g.fillRect(Map.convertPos(VanHelsing.position)[0],Map.convertPos(VanHelsing.position)[1],50, 50); 
+
+		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			g.setColor(Color.BLACK);
 			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],Map.convertPos(Projectile.projectiles.get(i).position)[1], 40, 10);
@@ -72,16 +79,16 @@ public class SimpleGame extends Frame {
 		System.out.println(VanHelsing);
 		switch (keyCode) {
 			case KeyEvent.VK_W:
-				VanHelsing.move(1);
+				VanHelsing.move(deltaTime);
 				break;
 			case KeyEvent.VK_A:
-				VanHelsing.move(2);
+				VanHelsing.move(deltaTime);
 				break;
 			case KeyEvent.VK_S:
-				VanHelsing.move(3);
+				VanHelsing.move(deltaTime);
 				break;
 			case KeyEvent.VK_D:
-				VanHelsing.move(4);
+				VanHelsing.move(deltaTime);
 				break;
 			case KeyEvent.VK_SPACE:
 				VanHelsing.attack();

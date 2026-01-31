@@ -1,5 +1,3 @@
-import java.lang.Math;
-		
 public class Enemy extends Creature {
 	
 	public static void main(String[] args) {
@@ -27,7 +25,7 @@ public class Enemy extends Creature {
 
 //		System.out.println("xunit"+ xUnitDir+ " yunit"+  yUnitDir);
 
-		position[0] += velocity * xUnitDir;
-		position[1] += velocity * yUnitDir;
+		position[0] += velocity[0] * xUnitDir;
+		position[1] += velocity[1] * yUnitDir;
 	}
 }
