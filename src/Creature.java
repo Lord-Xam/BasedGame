@@ -1,7 +1,7 @@
 public class Creature extends Entity {
 	
-	private int health = 100;
-	private int velocity = 5;
+	public int health = 100;
+	public int velocity = 5;
 
 	public static void main(String[] args) {
 	}

@@ -7,6 +7,14 @@ public class SimpleGame extends Frame {
 	private final int HEIGHT = 600;
 	private Player VanHelsing = new Player();
 
+
+	// enemies list
+	public Enemy bat = new Enemy(5,5,100,2,5);
+	public Enemy[] Enemies = {bat};
+
+
+
+
 	public static void main(String[] args) {
 		new SimpleGame().startGame();
 	}
@@ -27,6 +35,12 @@ public class SimpleGame extends Frame {
 
 	public void gameLoop() {
 		while (true) {
+			// update enemy following
+			for (int i = 0 ; i < Enemies.length; i++ ) {
+				Enemies[i].followPlayer(VanHelsing);
+			}
+
+
 			updateGameState();
 			repaint();
 			try {
@@ -42,7 +56,13 @@ public class SimpleGame extends Frame {
 		g.setColor(Color.GREEN);
 		g.fillRect(0,0,WIDTH,HEIGHT);
 		g.setColor(Color.BLUE);
-		g.fillRect(Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[0],Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an object
+		g.fillRect(Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[0],Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an 	
+
+		// draw enemies
+		for(int i=0; i < Enemies.length ; i++) {
+			g.setColor(Color.RED);
+			g.fillRect(Map.convertPos(Enemies[i].position[0],Enemies[i].position[1],WIDTH,HEIGHT)[0],Map.convertPos(Enemies[i].position[0],Enemies[i].position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an 	
+		}
 	}
 
 	private void handleKeyPress(int keyCode) {
@@ -71,4 +91,5 @@ public class SimpleGame extends Frame {
 			e.printStackTrace();
 		}
 	}
+
 }
