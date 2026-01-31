@@ -2,7 +2,7 @@ public class Entity {
 
 	public float[] position = new float[2];
 	public float[] velocity = new float[2];
-	private float scale = 10f; //scale movement speed
+	public float scale = 10f; //scale movement speed
 
 	public int hitbox;
 

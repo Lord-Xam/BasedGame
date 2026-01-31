@@ -41,16 +41,15 @@ public class SimpleGame extends Frame {
 
 			long time = System.nanoTime();
 			deltaTime = (int) (time - last_time) / 1000000;
-			if (deltaTime < 16) {
+			if (deltaTime <= 2 || deltaTime > 100) {
+				deltaTime = 16;
 				try {
 					Thread.sleep(16);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			deltaTime = 16;
 
-			System.out.println(deltaTime);
 			last_time = time;
 
 			// update enemy following
@@ -58,8 +57,13 @@ public class SimpleGame extends Frame {
 			// Enemies[i].update(VanHelsing);
 			// }
 
-			for (Projectile p : Projectile.projectiles) {
-				p.fly(deltaTime);
+			for (int i = 0; i < Projectile.projectiles.size(); i++) {
+				if (Projectile.projectiles.get(i).dead == 0)
+					Projectile.projectiles.get(i).update(deltaTime);
+				else {
+					Projectile.projectiles.remove(i);
+					i++;
+				}
 			}
 
 			VanHelsing.move(deltaTime);
@@ -75,6 +79,7 @@ public class SimpleGame extends Frame {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.BLUE);
 		g.fillRect(Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 50, 50);
+		g.drawString("fps: "+1000/(float)deltaTime,20,60);
 
 		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
@@ -100,6 +105,8 @@ public class SimpleGame extends Frame {
 			VanHelsing.velocity[1] = -1;
 		if (keyCode == KeyEvent.VK_D)
 			VanHelsing.velocity[0] = 1;
+		if (keyCode == KeyEvent.VK_SPACE)
+			VanHelsing.attack();
 	}
 
 	public void updateGameState() {
