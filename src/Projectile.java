@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+
 public class Projectile extends Entity {
 	
+	public static ArrayList<Projectile> projectiles = new ArrayList<Projectile>(); 
+
 	private int lifespan = 100;
 	private int velocity = 10;
 
-	public static void main(String[] args) {
+	public Projectile() {
+		System.out.println(projectiles.size() + " projectiles");
+		projectiles.add(this);
+	}
+	public void main(String[] args) {	
 	}
 
 	// 1:up 2:left 3:down 4:right

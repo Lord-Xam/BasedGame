@@ -3,7 +3,7 @@ public class Creature extends Entity {
 	private int health = 100;
 	private int velocity = 5;
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 	}
 
 	// 1:up 2:left 3:down 4:right

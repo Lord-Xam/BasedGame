@@ -3,8 +3,8 @@ import java.awt.event.*;
 
 public class SimpleGame extends Frame {
 
-	private final int WIDTH = 800;
-	private final int HEIGHT = 600;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	private Player VanHelsing = new Player();
 
 	public static void main(String[] args) {
@@ -42,8 +42,12 @@ public class SimpleGame extends Frame {
 		g.setColor(Color.GREEN);
 		g.fillRect(0,0,WIDTH,HEIGHT);
 		g.setColor(Color.BLUE);
-		g.fillRect(Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[0],Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an object
-	}
+		g.fillRect(Map.convertPos(VanHelsing.position)[0],Map.convertPos(VanHelsing.position)[1],50, 50); 
+		for (int i = 0; i < Projectile.projectiles.size(); i++) {
+			g.setColor(Color.BLACK);
+			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],Map.convertPos(Projectile.projectiles.get(i).position)[0], 40, 10);
+		}
+			}
 
 	private void handleKeyPress(int keyCode) {
 		System.out.println(VanHelsing);
@@ -60,6 +64,8 @@ public class SimpleGame extends Frame {
 			case KeyEvent.VK_D:
 				VanHelsing.move(4);
 				break;
+			case KeyEvent.VK_SPACE:
+				VanHelsing.attack();
 		}
 	}
 

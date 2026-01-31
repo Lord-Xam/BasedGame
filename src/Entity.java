@@ -2,7 +2,7 @@ public class Entity {
 	
 	public int[] position = new int[2];
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 	}
 	
 	public String toString() {
