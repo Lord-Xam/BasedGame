@@ -45,7 +45,7 @@ public class SimpleGame extends Frame {
 		g.fillRect(Map.convertPos(VanHelsing.position)[0],Map.convertPos(VanHelsing.position)[1],50, 50); 
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			g.setColor(Color.BLACK);
-			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],Map.convertPos(Projectile.projectiles.get(i).position)[0], 40, 10);
+			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],Map.convertPos(Projectile.projectiles.get(i).position)[1], 40, 10);
 		}
 			}
 

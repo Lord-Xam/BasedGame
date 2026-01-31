@@ -5,6 +5,6 @@ public class Player extends Creature {
 	}
 
 	public void attack() {
-		new Projectile();
+		new Projectile(position); //create a projectile at the players position
 	}
 }
