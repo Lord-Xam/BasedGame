@@ -3,16 +3,17 @@ public class Enemy extends Creature {
 	public static void main(String[] args) {
 	}
 
-
-	public Enemy(float[] position, float[] velocity, int hp, int hitbox) {
+	public Enemy(float[] position, float speed, int hp, int hitbox) {
 		health = hp;
 		this.position = position;
-		this.velocity = velocity;
+		this.scale = speed;
 		this.hitbox = hitbox;
 	}
 
-	public void followPlayer(Player p) {
+
+	public void followPlayer(Player p,int dt) {
 		if (Entity.withinHitbox(p,this) ) {
+		//	System.out.println("hitbox");
 			return;
 		}
 
@@ -24,11 +25,11 @@ public class Enemy extends Creature {
 
 //		System.out.println("xunit"+ xUnitDir+ " yunit"+  yUnitDir);
 
-		position[0] += velocity[0] * xUnitDir;
-		position[1] += velocity[1] * yUnitDir;
+		position[0] += scale* xUnitDir*dt /1000;
+		position[1] +=  scale* yUnitDir*dt/1000;
 	}
 
-	public void update(Player p) {
-		followPlayer(p);
+	public void update(Player p,int dt) {
+		followPlayer(p,dt);
 	}
 }

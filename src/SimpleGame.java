@@ -10,7 +10,8 @@ public class SimpleGame extends Frame {
 	private Player VanHelsing = new Player();
 
 	// enemies list
-	public Enemy bat = new Enemy(new float[]{0,0},new float[]{0,0},100,5);
+	final float monsterSpeed =  5f;
+	public Enemy bat = new Enemy(new float[]{0,0},monsterSpeed,100,5);
 	public Enemy[] Enemies = {bat};
 
 
@@ -60,7 +61,7 @@ public class SimpleGame extends Frame {
 			public void keyReleased(KeyEvent e) {
 				//System.out.println("Keycode: " + e.getKeyCode());
 				int currentKey = e.getKeyCode();
-				System.out.println(e.getKeyCode());
+				//System.out.println(e.getKeyCode());
 				if (currentKey == 87) {
 					wKey = false;
 //					System.out.println("w released");
@@ -108,9 +109,9 @@ public class SimpleGame extends Frame {
 			last_time = time;
 
 			// update enemy following
-			// for (int i = 0 ; i < Enemies.length; i++ ) {
-			// Enemies[i].update(VanHelsing);
-			// }
+			 for (int i = 0 ; i < Enemies.length; i++ ) {
+			 Enemies[i].update(VanHelsing,deltaTime);
+			 }
 			
 			// update player's velocity
 			
@@ -164,11 +165,10 @@ public class SimpleGame extends Frame {
 					Map.convertPos(Projectile.projectiles.get(i).position)[1], 40, 10);
 		}
 		// draw enemies
-		// for(int i=0; i < Enemies.length ; i++) {
-		// g.setColor(Color.RED);
-		// g.fillRect(Map.convertPos(Enemies[i].position)[0],Map.convertPos(Enemies[i].position)[1],50,
-		// 50); // Example for player or an
-		// }
+		 for(int i=0; i < Enemies.length ; i++) {
+		 g.setColor(Color.RED);
+		 g.fillRect(Map.convertPos(Enemies[i].position)[0],Map.convertPos(Enemies[i].position)[1],50, 50); // Example for player or an
+		 }
 	}
 
 	public void updateGameState() {
