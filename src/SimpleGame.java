@@ -162,7 +162,7 @@ public class SimpleGame extends Frame {
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			g.setColor(Color.BLACK);
 			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],
-					Map.convertPos(Projectile.projectiles.get(i).position)[1], 40, 10);
+					Map.convertPos(Projectile.projectiles.get(i).position)[1], Projectile.projectiles.get(i).width, Projectile.projectiles.get(i).height);
 		}
 		// draw enemies
 		 for(int i=0; i < Enemies.length ; i++) {
@@ -175,6 +175,9 @@ public class SimpleGame extends Frame {
 		// Update positions and check for collisions
 		
 			for (int i = 0; i < Projectile.projectiles.size(); i++) {
+				for(int j =0; j<Enemies.length; j++) {
+					Projectile.projectiles.get(i).hitEnemy(Enemies[j]);
+				}
 				if (Projectile.projectiles.get(i).dead == 0)
 					Projectile.projectiles.get(i).update(deltaTime);
 				else {
