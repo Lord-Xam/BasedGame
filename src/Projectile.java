@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.random.*;
 
 public class Projectile extends Entity {
 
@@ -7,14 +9,18 @@ public class Projectile extends Entity {
 	private int lifespan = 1000;
 	private int lifetime = 0;
 	public int dead;
-	public static int cooldown = 100;
+
+	public static int cooldown = 50;
 	public static int cooldowntimer;
+	private float angle;
 
 	public Projectile(float[] pos) {
 		position[0] = pos[0];
-		position[1] = pos[1];
-		velocity[0] = 2;
-		velocity[1] = 0;
+		position[1] = pos[1]-10;
+		Random rand = new Random();
+		angle = rand.nextFloat();
+		velocity[0] = 5*(float)Math.cos(angle);
+		velocity[1] = 5*(float)Math.sin(angle);
 		scale = 10f;
 		System.out.print("new projectile at ");
 		System.out.println(this);

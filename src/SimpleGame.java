@@ -143,16 +143,6 @@ public class SimpleGame extends Frame {
 			}
 
 
-			for (int i = 0; i < Projectile.projectiles.size(); i++) {
-				if (Projectile.projectiles.get(i).dead == 0)
-					Projectile.projectiles.get(i).update(deltaTime);
-				else {
-					Projectile.projectiles.remove(i);
-					i++;
-				}
-			}
-
-			VanHelsing.move(deltaTime);
 
 			updateGameState();
 			repaint();
@@ -183,6 +173,17 @@ public class SimpleGame extends Frame {
 
 	public void updateGameState() {
 		// Update positions and check for collisions
+		
+			for (int i = 0; i < Projectile.projectiles.size(); i++) {
+				if (Projectile.projectiles.get(i).dead == 0)
+					Projectile.projectiles.get(i).update(deltaTime);
+				else {
+					Projectile.projectiles.remove(i);
+					i++;
+				}
+			}
+
+			VanHelsing.move(deltaTime);
 		try {
 			// game logic here
 		} catch (Exception e) {
