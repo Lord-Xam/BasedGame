@@ -6,7 +6,6 @@ public class Enemy extends Creature {
 	public Enemy(float[] position, float speed, int hp, int hitbox) {
 		health = hp;
 		this.position = position;
-		this.scale = speed;
 		this.hitbox = hitbox;
 	}
 
@@ -17,16 +16,12 @@ public class Enemy extends Creature {
 			return;
 		}
 
-		float xDir = p.position[0] - this.position[0];
-		float yDir = p.position[1] - this.position[1];
-
-		float xUnitDir = xDir / ((float) Math.sqrt( xDir*xDir + yDir*yDir));
-		float yUnitDir = yDir / ((float) Math.sqrt( xDir*xDir + yDir*yDir));
-
-//		System.out.println("xunit"+ xUnitDir+ " yunit"+  yUnitDir);
-
-		position[0] += scale* xUnitDir*dt /1000;
-		position[1] +=  scale* yUnitDir*dt/1000;
+		float dx = p.position[0] - position[0];
+		float dy = p.position[1] - position[1];
+		double dir = Math.atan2(dy,dx);
+		
+		position[0] += speed*Math.cos(dir);
+		position[1] += speed*Math.sin(dir);
 	}
 
 	public void update(Player p,int dt) {

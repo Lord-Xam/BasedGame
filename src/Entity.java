@@ -1,8 +1,8 @@
 public class Entity {
 
 	public float[] position = new float[2];
-	public float[] velocity = new float[2];
-	public float scale = 10f; //scale movement speed
+	public int speed;
+	public float angle;
 
 	public int hitbox;
 
@@ -22,14 +22,8 @@ public class Entity {
 	}
 
 	public void move(int dt) {
-		if (velocity[0] == 0 ) {
-			position[1] += scale*velocity[1]*dt/1000;
-		} else if (velocity[1] == 0 ) {
-			position[0] += scale*velocity[0]*dt/1000;
-		} else {
-			position[0] += Math.sqrt(1f/2)*scale*velocity[0]*dt/1000;
-			position[1] += Math.sqrt(1f/2)*scale*velocity[1]*dt/1000;
-		}
+		position[0] += speed*Math.cos(angle)*(float)dt/1000f;
+		position[1] += speed*Math.sin(angle)*(float)dt/1000f;
 	}
 
 }

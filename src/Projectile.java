@@ -12,16 +12,14 @@ public class Projectile extends Entity {
 
 	public static int cooldown = 50;
 	public static int cooldowntimer;
-	private float angle;
 
 	public Projectile(float[] pos) {
 		position[0] = pos[0];
 		position[1] = pos[1]-10;
+		speed = 100;
 		Random rand = new Random();
-		angle = rand.nextFloat();
-		velocity[0] = 5*(float)Math.cos(angle);
-		velocity[1] = 5*(float)Math.sin(angle);
-		scale = 10f;
+		angle = rand.nextFloat(0f,2*(float)Math.PI);
+		System.out.println(angle);
 		System.out.print("new projectile at ");
 		System.out.println(this);
 		projectiles.add(this);

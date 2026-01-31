@@ -10,7 +10,7 @@ public class SimpleGame extends Frame {
 	private Player VanHelsing = new Player();
 
 	// enemies list
-	final float monsterSpeed =  5f;
+	final float monsterSpeed =  30f;
 	public Enemy bat = new Enemy(new float[]{0,0},monsterSpeed,100,5);
 	public Enemy[] Enemies = {bat};
 
@@ -105,7 +105,6 @@ public class SimpleGame extends Frame {
 					e.printStackTrace();
 				}
 			}
-
 			last_time = time;
 
 			// update enemy following
@@ -114,14 +113,7 @@ public class SimpleGame extends Frame {
 			 }
 			
 			// update player's velocity
-			
-			// check states of each key	
-//			System.out.println("=------=");	
-//			System.out.println("w pressed? " + wKey);	
-//			System.out.println("a pressed? " + aKey);	
-//			System.out.println("s pressed? " + sKey);	
-//			System.out.println("d pressed? " + dKey);	
-			// up and down
+			// up and down			
 			if (wKey == true) {
 				VanHelsing.velocity[1] = 1;
 			} else if (sKey == true) {
