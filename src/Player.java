@@ -1,6 +1,6 @@
 public class Player {
 	
-	public int[] position = {400,300};
+	public int[] position = new int[2];
 	private int velocity = 1;
 
 	public static void main(String[] args) {

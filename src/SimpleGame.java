@@ -3,6 +3,8 @@ import java.awt.event.*;
 
 public class SimpleGame extends Frame {
 
+	private final int WIDTH = 800;
+	private final int HEIGHT = 600;
 	private Player VanHelsing = new Player();
 
 	public static void main(String[] args) {
@@ -11,7 +13,7 @@ public class SimpleGame extends Frame {
 
 	public void startGame() {
 		setTitle("Simple Game");
-		setSize(800, 600);
+		setSize(WIDTH, HEIGHT);
 		setVisible(true);
 		// Add additional setup like listeners here
 		addKeyListener(new KeyAdapter() {
@@ -38,7 +40,7 @@ public class SimpleGame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(VanHelsing.position[0], VanHelsing.position[1],20, 20); // Example for player or an object
+		g.fillRect(Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[0],Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an object
 	}
 
 	private void handleKeyPress(int keyCode) {
