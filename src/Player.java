@@ -14,15 +14,13 @@ public class Player {
 		}
 		if (direction == 2 ) {
 				position[0] -= 1*velocity;
-				System.out.println("moving left");
 		}
 		if (direction == 3 ) {
 				position[1] -= 1*velocity;
 		}
 		if (direction == 4 ) {
 				position[0] += 1*velocity;
-				System.out.println("moving right");
 		}
-		System.out.println(position[0]);
+		System.out.println(position[0] + " " + position[1]);
 	}
 }

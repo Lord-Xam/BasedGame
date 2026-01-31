@@ -20,6 +20,7 @@ public class SimpleGame extends Frame {
 				handleKeyPress(e.getKeyCode());
 			}
 		});
+		gameLoop();
 	}
 
 	public void gameLoop() {
@@ -37,27 +38,21 @@ public class SimpleGame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(50, 50, VanHelsing.position[0], VanHelsing.position[1]); // Example for player or an object
+		g.fillRect(VanHelsing.position[0], VanHelsing.position[1],20, 20); // Example for player or an object
 	}
 
 	private void handleKeyPress(int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_W:
-				// Move player left
-				System.out.println("up");
+				VanHelsing.move(1);
 				break;
 			case KeyEvent.VK_A:
-				// Move player left
-				System.out.println("left");
 				VanHelsing.move(2);
 				break;
 			case KeyEvent.VK_S:
-				// Move player right
-				System.out.println("down");
+				VanHelsing.move(3);
 				break;
 			case KeyEvent.VK_D:
-				// Move player right
-				System.out.println("right");
 				VanHelsing.move(4);
 				break;
 		}
