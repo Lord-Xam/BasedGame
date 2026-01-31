@@ -11,7 +11,7 @@ public class SimpleGame extends Frame {
 
 
 	// enemies list
-	public Enemy bat = new Enemy(5,5,100,2,5);
+	public Enemy bat = new Enemy(new float[]{0,0},new float[]{0,0},100,5);
 	public Enemy[] Enemies = {bat};
 
 
