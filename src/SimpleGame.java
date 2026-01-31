@@ -64,7 +64,7 @@ public class SimpleGame extends Frame {
 		// draw enemies
 		for(int i=0; i < Enemies.length ; i++) {
 			g.setColor(Color.RED);
-			g.fillRect(Map.convertPos(Enemies[i].position[0],Enemies[i].position[1],WIDTH,HEIGHT)[0],Map.convertPos(Enemies[i].position[0],Enemies[i].position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an 	
+			g.fillRect(Map.convertPos(Enemies[i].position)[0],Map.convertPos(Enemies[i].position)[1],50, 50); // Example for player or an 	
 		}
 			}
 
