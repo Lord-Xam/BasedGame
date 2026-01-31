@@ -28,4 +28,8 @@ public class Enemy extends Creature {
 		position[0] += velocity[0] * xUnitDir;
 		position[1] += velocity[1] * yUnitDir;
 	}
+
+	public void update(Player p) {
+		followPlayer(p);
+	}
 }

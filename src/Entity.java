@@ -24,4 +24,5 @@ public class Entity {
 		position[0] += velocity[0]*dt/1000;
 		position[1] += velocity[1]*dt/1000;
 	}
+
 }

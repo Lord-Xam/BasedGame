@@ -44,7 +44,7 @@ public class SimpleGame extends Frame {
 
 			// update enemy following
 			for (int i = 0 ; i < Enemies.length; i++ ) {
-				Enemies[i].followPlayer(VanHelsing);
+				Enemies[i].update(VanHelsing);
 			}
 
 			for (Projectile p : Projectile.projectiles) {
