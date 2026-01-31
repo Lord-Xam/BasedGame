@@ -1,9 +1,22 @@
+import java.util.ArrayList;
+
 public class Projectile extends Entity {
 	
-	private int lifespan = 100;
-	private int velocity = 10;
+	public static ArrayList<Projectile> projectiles = new ArrayList<Projectile>(); 
 
-	public static void main(String[] args) {
+	private int lifespan = 100;
+	private int velocity = 1;
+
+	public Projectile(int[] pos) {
+		position[0] = pos[0];
+		position[1] = pos[1];
+		System.out.print("new projectile at ");
+		System.out.println(this);
+		projectiles.add(this);
+	}
+
+	public void main(String[] args) {
+		// fly right
 	}
 
 	// 1:up 2:left 3:down 4:right
