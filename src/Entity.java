@@ -19,4 +19,5 @@ public class Entity {
 	public String toString() {
 		return "("+position[0] + ", " + position[1]+")";
 	}
+
 }
