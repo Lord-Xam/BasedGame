@@ -10,7 +10,7 @@ public class SimpleGame extends Frame {
 	private Player VanHelsing = new Player();
 
 	// enemies list
-	final float monsterSpeed =  30f;
+	final int monsterSpeed =  1;
 
 
 

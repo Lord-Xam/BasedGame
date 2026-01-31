@@ -13,7 +13,7 @@ public class Player extends Creature {
 
 	public void move(int dt) {
 		// if moving too fast
-		if (Math.pow(velocity[0],2) > 1 || Math.pow(velocity[1],2) > 1) {
+		if (Math.pow(velocity[0],2) + Math.pow(velocity[1],2) > 1) {
 			position[0] += 0.707f*speed*velocity[0]*(float)dt/1000;
 			position[1] += 0.707f*speed*velocity[1]*(float)dt/1000;
 		} else {

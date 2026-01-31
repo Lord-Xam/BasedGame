@@ -9,9 +9,10 @@ public class Enemy extends Creature {
 	public static void main(String[] args) {
 	}
 
-	public Enemy(float[] position, float speed, int hp, int hitbox) {
+	public Enemy(float[] position, int speed, int hp, int hitbox) {
 		health = hp;
 		this.position = position;
+		this.speed = speed;
 		this.hitbox = hitbox;
 		enemies.add(this);
 	}
