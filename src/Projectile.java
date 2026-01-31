@@ -15,7 +15,7 @@ public class Projectile extends Entity {
 		projectiles.add(this);
 	}
 
-	public void main(String[] args) {
+	public static void main(String[] args) {
 		// fly right
 	}
 
