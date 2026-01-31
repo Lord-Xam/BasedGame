@@ -7,6 +7,8 @@ public class Projectile extends Entity {
 	private int lifespan = 1000;
 	private int lifetime = 0;
 	public int dead;
+	public static int cooldown = 100;
+	public static int cooldowntimer;
 
 	public Projectile(float[] pos) {
 		position[0] = pos[0];

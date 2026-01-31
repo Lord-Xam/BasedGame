@@ -134,7 +134,12 @@ public class SimpleGame extends Frame {
 			} else VanHelsing.velocity[0] = 0;
 
 			if (space == true ) {
-				VanHelsing.attack();
+				if (Projectile.cooldowntimer == 0) {
+					Projectile.cooldowntimer = Projectile.cooldown; //start cooldown
+					VanHelsing.attack();
+				}
+				else
+					Projectile.cooldowntimer--;
 			}
 
 
