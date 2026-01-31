@@ -9,15 +9,19 @@ public class Player {
 
 	// 1:up 2:left 3:down 4:right
 	public void move(int direction) {
-		switch (direction) {
-			case 1:
+		if (direction == 1 ) {
 				position[1] += 1*velocity;
-			case 2:
-				position[0] += -1*velocity;
-			case 3:
-				position[1] += -1*velocity;
-			case 4:
+		}
+		if (direction == 2 ) {
+				position[0] -= 1*velocity;
+				System.out.println("moving left");
+		}
+		if (direction == 3 ) {
+				position[1] -= 1*velocity;
+		}
+		if (direction == 4 ) {
 				position[0] += 1*velocity;
+				System.out.println("moving right");
 		}
 		System.out.println(position[0]);
 	}
