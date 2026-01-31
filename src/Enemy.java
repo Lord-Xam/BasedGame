@@ -4,11 +4,10 @@ public class Enemy extends Creature {
 	}
 
 
-	public Enemy(int xPos, int yPos, int hp, int vel, int hitbox) {
+	public Enemy(float[] position, float[] velocity, int hp, int hitbox) {
 		health = hp;
-		velocity = vel;
-		position[0] = xPos;
-		position[1] = yPos;
+		this.position = position;
+		this.velocity = velocity;
 		this.hitbox = hitbox;
 	}
 
