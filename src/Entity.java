@@ -1,0 +1,11 @@
+public class Entity {
+	
+	public int[] position = new int[2];
+
+	public static void main(String[] args) {
+	}
+	
+	public String toString() {
+		return "("+position[0] + ", " + position[1]+")";
+	}
+}

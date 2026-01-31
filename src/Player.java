@@ -1,10 +1,9 @@
-public class Player {
+public class Player extends Entity {
 	
-	public int[] position = new int[2];
-	private int velocity = 1;
+	private int velocity = 5;
 
 	public static void main(String[] args) {
-		System.out.println("hello");
+		System.out.println("hello player");
 	}
 
 	// 1:up 2:left 3:down 4:right
@@ -21,6 +20,5 @@ public class Player {
 		if (direction == 4 ) {
 				position[0] += 1*velocity;
 		}
-		System.out.println(position[0] + " " + position[1]);
 	}
 }

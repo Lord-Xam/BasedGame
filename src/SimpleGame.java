@@ -39,11 +39,14 @@ public class SimpleGame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GREEN);
+		g.fillRect(0,0,WIDTH,HEIGHT);
+		g.setColor(Color.BLUE);
 		g.fillRect(Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[0],Map.convertPos(VanHelsing.position[0],VanHelsing.position[1],WIDTH,HEIGHT)[1],50, 50); // Example for player or an object
 	}
 
 	private void handleKeyPress(int keyCode) {
+		System.out.println(VanHelsing);
 		switch (keyCode) {
 			case KeyEvent.VK_W:
 				VanHelsing.move(1);
