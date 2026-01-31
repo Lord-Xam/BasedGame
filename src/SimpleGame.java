@@ -21,7 +21,7 @@ public class SimpleGame extends Frame {
 
 	public void gameLoop() {
 		while (true) {
-			// updateGameState();
+			updateGameState();
 			repaint();
 			try {
 				Thread.sleep(16); // Approx. 60 FPS
@@ -39,14 +39,31 @@ public class SimpleGame extends Frame {
 
 	private void handleKeyPress(int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_W:
+				// Move player left
+				System.out.println("up");
+				break;
+			case KeyEvent.VK_A:
 				// Move player left
 				System.out.println("left");
 				break;
-			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_S:
+				// Move player right
+				System.out.println("down");
+				break;
+			case KeyEvent.VK_D:
 				// Move player right
 				System.out.println("right");
 				break;
+		}
+	}
+
+	public void updateGameState() {
+		// Update positions and check for collisions
+		try {
+			// game logic here
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
