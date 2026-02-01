@@ -1,7 +1,8 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SimpleGame extends Frame {
+public class SimpleGame extends JFrame {
 
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 900;
@@ -9,6 +10,7 @@ public class SimpleGame extends Frame {
 
 	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
 	Image enemy_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/bat.png");
+	Image weapon_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/weapon.png");
 	// Image bg_sprite =
 	// Toolkit.getDefaultToolkit().getImage("../sprites/grass.jpg");
 
@@ -114,29 +116,27 @@ public class SimpleGame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(bg);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
-		// g.drawImage(bg_sprite,0,0,WIDTH,HEIGHT, null);
-		g.setColor(Color.BLUE);
-		// g.fillRect(Map.convertPos(VanHelsing.position)[0],
-		// Map.convertPos(VanHelsing.position)[1], 50, 50);
+		Graphics2D g2d = (Graphics2D)g;
+		//draw background
+		g2d.setColor(bg);
+		g2d.fillRect(0, 0, WIDTH, HEIGHT);
+
+		//draw player
 		if (VanHelsing.alive == true) {
-		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60,
-				80, null);
-		g.drawString("fps: " + 1d / deltaTime, 20, 60);
-		}
+		g2d.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60, 80, null);
+		} else
+			g2d.drawString("game over", WIDTH/2, HEIGHT/2);
+
 		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
-			g.setColor(Color.BLACK);
-			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],
-					Map.convertPos(Projectile.projectiles.get(i).position)[1], Projectile.projectiles.get(i).width,
-					Projectile.projectiles.get(i).height);
+			Projectile proj = Projectile.projectiles.get(i);
+			g2d.drawImage(weapon_sprite, Map.convertPos(proj.position)[0], Map.convertPos(proj.position)[1], 40, 40, null);
 		}
-		// draw enemies
+
+		// enemies
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
-			g.setColor(Color.RED);
-			//g.fillRect(Map.convertPos(Enemy.enemies.get(i).position)[0], Map.convertPos(Enemy.enemies.get(i).position)[1], 50, 50);
-			g.drawImage(enemy_sprite, Map.convertPos(Enemy.enemies.get(i).position)[0], Map.convertPos(Enemy.enemies.get(i).position)[1], 50, 50, null);
+			Enemy enemy = Enemy.enemies.get(i);
+			g2d.drawImage(enemy_sprite, Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], 50, 50, null);
 		}
 	}
 
