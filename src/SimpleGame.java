@@ -16,6 +16,9 @@ public class SimpleGame extends JFrame {
 
 	private Player VanHelsing = new Player();
 
+	private int spawnchance = 100; // higher number = lower chance
+	private long start_time = System.currentTimeMillis();
+
 	// enemies list
 
 	public static void main(String[] args) {
@@ -141,7 +144,12 @@ public class SimpleGame extends JFrame {
 	}
 
 	public void updateGameState(double deltaTime) {
-		// Update positions and check for collisions
+		
+		if ((System.currentTimeMillis() - start_time) % 10000 <= 20 && spawnchance > 1) {
+			System.out.println(spawnchance);
+			spawnchance -= 2;
+		}
+
 		// update enemy following
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
 			Enemy.enemies.get(i).update(VanHelsing, deltaTime);
@@ -149,7 +157,7 @@ public class SimpleGame extends JFrame {
 
 		// add new enemies
 
-		EnemySpawner.trySpawn(100,WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox, Enemy.defaultDamage);
+		EnemySpawner.trySpawn(WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox, Enemy.defaultDamage);
 
 		// update player's velocity
 		// up and down
