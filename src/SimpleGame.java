@@ -8,6 +8,7 @@ public class SimpleGame extends Frame {
 	public double deltaTime;
 
 	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
+	Image enemy_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/bat.png");
 	// Image bg_sprite =
 	// Toolkit.getDefaultToolkit().getImage("../sprites/grass.jpg");
 
@@ -119,8 +120,7 @@ public class SimpleGame extends Frame {
 		g.setColor(Color.BLUE);
 		// g.fillRect(Map.convertPos(VanHelsing.position)[0],
 		// Map.convertPos(VanHelsing.position)[1], 50, 50);
-		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60,
-				80, null);
+		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60, 80, null);
 		g.drawString("fps: " + 1d / deltaTime, 20, 60);
 
 		// projectiles
@@ -133,8 +133,8 @@ public class SimpleGame extends Frame {
 		// draw enemies
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
 			g.setColor(Color.RED);
-			g.fillRect(Map.convertPos(Enemy.enemies.get(i).position)[0],
-					Map.convertPos(Enemy.enemies.get(i).position)[1], 50, 50); // Example for player or an
+			//g.fillRect(Map.convertPos(Enemy.enemies.get(i).position)[0], Map.convertPos(Enemy.enemies.get(i).position)[1], 50, 50);
+			g.drawImage(enemy_sprite, Map.convertPos(Enemy.enemies.get(i).position)[0], Map.convertPos(Enemy.enemies.get(i).position)[1], 50, 50, null);
 		}
 	}
 
