@@ -5,6 +5,10 @@ public class Enemy extends Creature {
 
 	public int hitCooldown =50;
 	public int timeLeft;
+
+	public static int defaultHp = 10;
+	public static int defaultSpeed = 10;
+	public static int defaultHitbox = 3;
 	
 	public static void main(String[] args) {
 	}

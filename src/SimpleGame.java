@@ -14,7 +14,6 @@ public class SimpleGame extends Frame {
 	private Player VanHelsing = new Player();
 
 	// enemies list
-	final int monsterSpeed = 10;
 
 	public static void main(String[] args) {
 		new SimpleGame().startGame();
@@ -32,7 +31,6 @@ public class SimpleGame extends Frame {
 		setTitle("Simple Game");
 		setSize(WIDTH, HEIGHT);
 		setVisible(true);
-		new Enemy(new float[] { 0, 0 }, monsterSpeed, 100, 5);
 		// Add additional setup like listeners here
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,7 +96,7 @@ public class SimpleGame extends Frame {
 			if (deltaTime <= 0 || deltaTime > 1) {
 				deltaTime = 0.016;
 			}
-			System.out.println(deltaTime);
+			//System.out.println(deltaTime);
 
 			updateGameState(deltaTime);
 
@@ -146,6 +144,10 @@ public class SimpleGame extends Frame {
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
 			Enemy.enemies.get(i).update(VanHelsing, deltaTime);
 		}
+
+		// add new enemies
+
+		EnemySpawner.trySpawn(100,WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox);
 
 		// update player's velocity
 		// up and down
