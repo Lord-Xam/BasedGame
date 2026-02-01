@@ -1,4 +1,4 @@
-#How to download
+# How to download
 
 ## Quick method
 - download and unzip file
