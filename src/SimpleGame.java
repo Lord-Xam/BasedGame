@@ -17,6 +17,7 @@ public class SimpleGame extends JFrame {
 	private Player VanHelsing = new Player();
 
 	private int spawnchance = 100; // higher number = lower chance
+	private int speedboost = 0; // for enemies
 	private long start_time = System.currentTimeMillis();
 
 	// enemies list
@@ -148,12 +149,14 @@ public class SimpleGame extends JFrame {
 
 	public void updateGameState(double deltaTime) {
 
+		// increase difficulty
 		if ((System.currentTimeMillis() - start_time) % 10000 <= 20) {
 			if (spawnchance > 5)
 				spawnchance -= 5;
 			else if (spawnchance > 1)
 				spawnchance--;
-			System.out.println("spawnchance "+spawnchance);
+			if (speedboost < 50)
+				speedboost += 5;
 		}
 
 		// update enemy following
@@ -163,7 +166,7 @@ public class SimpleGame extends JFrame {
 
 		// add new enemies
 
-		EnemySpawner.trySpawn(WIDTH, HEIGHT, Enemy.defaultSpeed, Enemy.defaultHp, Enemy.defaultHitbox,
+		EnemySpawner.trySpawn(WIDTH, HEIGHT, Enemy.defaultSpeed+speedboost, Enemy.defaultHp, Enemy.defaultHitbox,
 				Enemy.defaultDamage);
 
 		// update player's velocity
