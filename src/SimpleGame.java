@@ -12,7 +12,7 @@ public class SimpleGame extends Frame {
 	private Player VanHelsing = new Player();
 
 	// enemies list
-	final int monsterSpeed =  1;
+	final int monsterSpeed =  10;
 
 
 
@@ -136,6 +136,8 @@ public class SimpleGame extends Frame {
 					Projectile.cooldowntimer--;
 			}
 
+			EnemyProjectile.collide(Enemy.enemies,Projectile.projectiles);
+
 
 
 			updateGameState();
@@ -167,11 +169,7 @@ public class SimpleGame extends Frame {
 
 	public void updateGameState() {
 		// Update positions and check for collisions
-		
-			for (int i = 0; i < Projectile.projectiles.size(); i++) {
-				for(int j =0; j<Enemy.enemies.size(); j++) {
-					Projectile.projectiles.get(i).hitEnemy(Enemy.enemies.get(j));
-				}
+			for (int i = 0; i<Projectile.projectiles.size(); i++ ) {		
 				if (Projectile.projectiles.get(i).dead == 0)
 					Projectile.projectiles.get(i).update(deltaTime);
 				else {

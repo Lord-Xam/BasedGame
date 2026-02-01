@@ -16,20 +16,19 @@ public class Enemy extends Creature {
 		this.hitbox = hitbox;
 		enemies.add(this);
 	}
+		
 
-	public void kill() {
-		System.out.println("killed");
-	};
 
-	public void removeHp(int hp) {
+	public boolean removeHp(int hp) {
 		if (timeLeft == 0) {
 			health -= hp;
 			System.out.println("damage");
 			timeLeft = hitCooldown;
 		} 
 		if (health <= 0) {
-			kill();
+			return true;
 		}
+		return false;
 	}
 
 	private void cooldownTick() {
@@ -50,8 +49,8 @@ public class Enemy extends Creature {
 		float dy = p.position[1] - position[1];
 		double dir = Math.atan2(dy,dx);
 		
-		position[0] += speed*Math.cos(dir);
-		position[1] += speed*Math.sin(dir);
+		position[0] += speed*Math.cos(dir)* dt/1000;
+		position[1] += speed*Math.sin(dir)* dt/1000;
 	}
 
 	public void update(Player p,int dt) {
