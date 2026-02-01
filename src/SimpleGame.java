@@ -119,10 +119,11 @@ public class SimpleGame extends Frame {
 		g.setColor(Color.BLUE);
 		// g.fillRect(Map.convertPos(VanHelsing.position)[0],
 		// Map.convertPos(VanHelsing.position)[1], 50, 50);
+		if (VanHelsing.alive == true ) {
 		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60,
 				80, null);
 		g.drawString("fps: " + 1d / deltaTime, 20, 60);
-
+		}
 		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			g.setColor(Color.BLACK);
@@ -147,7 +148,7 @@ public class SimpleGame extends Frame {
 
 		// add new enemies
 
-		EnemySpawner.trySpawn(100,WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox);
+		EnemySpawner.trySpawn(100,WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox, Enemy.defaultDamage);
 
 		// update player's velocity
 		// up and down
@@ -166,7 +167,7 @@ public class SimpleGame extends Frame {
 			VanHelsing.velocity[0] = 0;
 
 		if (space == true) {
-			if (Projectile.cooldowntimer == 0) {
+			if (Projectile.cooldowntimer == 0 && VanHelsing.alive == true) {
 				Projectile.cooldowntimer = Projectile.cooldown; // start cooldown
 				VanHelsing.attack();
 			} else

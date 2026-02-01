@@ -3,7 +3,7 @@ import java.util.Random;
 public class EnemySpawner {
 
 
-	public static void trySpawn(int chance, int screenWidth,int screenHeight, int speed, int hp, int hitbox) {
+	public static void trySpawn(int chance, int screenWidth,int screenHeight, int speed, int hp, int hitbox, int damage) {
 		Random r = new Random();
 		int i = r.nextInt(chance);
 
@@ -15,7 +15,7 @@ public class EnemySpawner {
 		mapPos[1] = pos[1] - SimpleGame.HEIGHT/2;
 		
 		if (i==0) {
-			new Enemy(mapPos, speed, hp, hitbox);
+			new Enemy(mapPos, speed, hp, hitbox, damage);
 			System.out.println("new enemy at " + mapPos[0] +", " + mapPos[1]);
 		}
 

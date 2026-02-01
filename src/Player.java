@@ -1,4 +1,6 @@
 public class Player extends Creature {
+
+	public boolean alive = true;
 	
 	public float[] velocity = new float[2];
 
@@ -21,4 +23,15 @@ public class Player extends Creature {
 			position[1] += speed*velocity[1]*dt;
 		}
 	}
+
+	public void hit(int damage) {
+		health -= damage;
+
+		if (health <=0 ) {
+			alive = false;
+			System.out.println("dead");
+
+		}
+	}
+
 }
