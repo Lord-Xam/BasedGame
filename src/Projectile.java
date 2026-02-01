@@ -28,7 +28,7 @@ public class Projectile extends Entity {
 		projectiles.add(this);
 	}
 	
-	public void update(int dt) {
+	public void update(double dt) {
 		if (lifetime < lifespan) {
 			move(dt);
 			lifetime++;

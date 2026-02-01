@@ -3,7 +3,7 @@ public class Player extends Creature {
 	public float[] velocity = new float[2];
 
 	public Player(){
-		speed = 50;
+		speed = 100;
 		System.out.println("hello player");
 	}
 
@@ -11,14 +11,14 @@ public class Player extends Creature {
 		new Projectile(position); //create a projectile at the players position
 	}
 
-	public void move(int dt) {
+	public void move(double dt) {
 		// if moving too fast
 		if (Math.pow(velocity[0],2) + Math.pow(velocity[1],2) > 1) {
-			position[0] += 0.707f*speed*velocity[0]*(float)dt/1000;
-			position[1] += 0.707f*speed*velocity[1]*(float)dt/1000;
+			position[0] += 0.707f*speed*velocity[0]*dt;
+			position[1] += 0.707f*speed*velocity[1]*dt;
 		} else {
-			position[0] += speed*velocity[0]*(float)dt/1000;
-			position[1] += speed*velocity[1]*(float)dt/1000;
+			position[0] += speed*velocity[0]*dt;
+			position[1] += speed*velocity[1]*dt;
 		}
 	}
 }

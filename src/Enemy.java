@@ -39,7 +39,7 @@ public class Enemy extends Creature {
 	}
 
 
-	public void followPlayer(Player p,int dt) {
+	public void followPlayer(Player p,double dt) {
 		if (Entity.withinHitbox(p,this) ) {
 		//	System.out.println("hitbox");
 			return;
@@ -49,11 +49,11 @@ public class Enemy extends Creature {
 		float dy = p.position[1] - position[1];
 		double dir = Math.atan2(dy,dx);
 		
-		position[0] += speed*Math.cos(dir)* dt/1000;
-		position[1] += speed*Math.sin(dir)* dt/1000;
+		position[0] += speed*Math.cos(dir)* dt;
+		position[1] += speed*Math.sin(dir)* dt;
 	}
 
-	public void update(Player p,int dt) {
+	public void update(Player p,double dt) {
 		followPlayer(p,dt);
 		cooldownTick();
 	}

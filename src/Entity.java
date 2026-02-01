@@ -21,9 +21,9 @@ public class Entity {
 		return "(" + position[0] + ", " + position[1] + ")";
 	}
 
-	public void move(int dt) {
-		position[0] += speed*Math.cos(angle)*(float)dt/1000f;
-		position[1] += speed*Math.sin(angle)*(float)dt/1000f;
+	public void move(double dt) {
+		position[0] += speed*Math.cos(angle)*dt;
+		position[1] += speed*Math.sin(angle)*dt;
 	}
 
 }
