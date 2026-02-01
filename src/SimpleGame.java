@@ -3,11 +3,12 @@ import java.awt.event.*;
 
 public class SimpleGame extends Frame {
 
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 1200;
+	public static final int HEIGHT = 900;
 	public int deltaTime;
 
 	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
+	//Image bg_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/grass.jpg");
 
 	private Player VanHelsing = new Player();
 
@@ -26,6 +27,8 @@ public class SimpleGame extends Frame {
 	public boolean sKey;
 	public boolean dKey;
 	public boolean space;
+
+	private Color bg = new Color(0,128,32);
 
 	public void startGame() {
 		setTitle("Simple Game");
@@ -147,8 +150,9 @@ public class SimpleGame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.GREEN);
+		g.setColor(bg);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		//g.drawImage(bg_sprite,0,0,WIDTH,HEIGHT, null);
 		g.setColor(Color.BLUE);
 		//g.fillRect(Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 50, 50);
 		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1],60,80, null);
