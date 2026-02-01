@@ -7,6 +7,8 @@ public class SimpleGame extends Frame {
 	public static final int HEIGHT = 600;
 	public int deltaTime;
 
+	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
+
 	private Player VanHelsing = new Player();
 
 	// enemies list
@@ -146,7 +148,8 @@ public class SimpleGame extends Frame {
 		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.BLUE);
-		g.fillRect(Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 50, 50);
+		//g.fillRect(Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 50, 50);
+		g.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1],60,80, null);
 		g.drawString("fps: "+1000/(float)deltaTime,20,60);
 
 		// projectiles
