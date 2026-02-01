@@ -16,7 +16,7 @@ public class EnemySpawner {
 		
 		if (i==0) {
 			new Enemy(mapPos, speed, hp, hitbox, damage);
-			System.out.println("new enemy at " + mapPos[0] +", " + mapPos[1]);
+//			System.out.println("new enemy at " + mapPos[0] +", " + mapPos[1]);
 		}
 
 	}

@@ -1,6 +1,10 @@
 public class Player extends Creature {
 
 	public boolean alive = true;
+
+	public final int defaultLevelIncrement = 100;
+
+	public Experience xp = new Experience(100);
 	
 	public float[] velocity = new float[2];
 

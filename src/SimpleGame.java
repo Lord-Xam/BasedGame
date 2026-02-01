@@ -175,7 +175,7 @@ public class SimpleGame extends Frame {
 				Projectile.cooldowntimer--;
 		}
 
-		EnemyProjectile.collide(Enemy.enemies, Projectile.projectiles);
+		EnemyProjectile.collide(Enemy.enemies, Projectile.projectiles, VanHelsing);
 
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			if (Projectile.projectiles.get(i).dead == 0)

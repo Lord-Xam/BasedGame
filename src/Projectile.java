@@ -22,9 +22,9 @@ public class Projectile extends Entity {
 		speed = 100;
 		Random rand = new Random();
 		angle = rand.nextFloat(0f,2*(float)Math.PI);
-		System.out.println(angle);
-		System.out.print("new projectile at ");
-		System.out.println(this);
+//		System.out.println(angle);
+//		System.out.print("new projectile at ");
+//		System.out.println(this);
 		projectiles.add(this);
 	}
 	
@@ -41,10 +41,10 @@ public class Projectile extends Entity {
 		dead = 1;
 	}
 
-	public boolean hitEnemy(Enemy e) {
+	public boolean hitEnemy(Enemy e, Player p) {
 		if ((Math.abs(this.position[0] - e.position[0]) < this.width + e.hitbox) && (Math.abs(this.position[1] - e.position[1]) < this.height+ e.hitbox)) {
 			System.out.println("enemy hit");
-			return e.removeHp(damage);
+			return e.removeHp(damage,p);
 		}
 		return false;
 

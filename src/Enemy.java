@@ -11,6 +11,7 @@ public class Enemy extends Creature {
 	public static int defaultSpeed = 10;
 	public static int defaultHitbox = 3;
 	public static int defaultDamage= 50;
+	public static int defaultXpValue = 10;
 
 	
 	public static void main(String[] args) {
@@ -27,9 +28,10 @@ public class Enemy extends Creature {
 		
 
 
-	public boolean removeHp(int hp) {
+	public boolean removeHp(int hp, Player p) {
 		if (timeLeft == 0) {
 			health -= hp;
+			p.xp.addXp(defaultXpValue);
 			System.out.println("damage");
 			timeLeft = hitCooldown;
 		} 
