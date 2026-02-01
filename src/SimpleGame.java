@@ -138,6 +138,10 @@ public class SimpleGame extends JFrame {
 			Enemy enemy = Enemy.enemies.get(i);
 			g2d.drawImage(enemy_sprite, Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], 50, 50, null);
 		}
+
+		// xp bar
+		g2d.setColor(Color.BLUE);
+		g2d.fillRect(0,0,VanHelsing.xp.barLength, HEIGHT/10);
 	}
 
 	public void updateGameState(double deltaTime) {
