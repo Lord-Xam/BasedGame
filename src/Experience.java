@@ -1,11 +1,13 @@
 public class Experience {
 	private int xp;
-	private int xpNextLevel;
+	public int xpNextLevel;
 	private int level;
 	private int levelIncrement;
+	public int barLength;
 
 	public void addXp(int x) {
 		this.xp += x;
+		barLength += ((float) xp) / xpNextLevel * SimpleGame.WIDTH;
 		if (xp >= xpNextLevel ) {
 			levelUp();
 		}
@@ -19,6 +21,7 @@ public class Experience {
 		xp =0;
 		xpNextLevel+= levelIncrement;
 		System.out.println("level up");
+		barLength = 0;
 	}
 
 	public Experience(int levelIncrement) {
@@ -26,5 +29,10 @@ public class Experience {
 		this.levelIncrement = levelIncrement;
 		xpNextLevel = levelIncrement;
 	}
+
+	public int getXp() {
+		return xp;
+	}
+
 
 }
