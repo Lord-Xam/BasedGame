@@ -28,6 +28,13 @@ public class Projectile extends Entity {
 //		System.out.println(this);
 		projectiles.add(this);
 	}
+
+	public static void decreaseCooldown() {
+		if (cooldown > 5)
+			cooldown -= 5;
+		else if (cooldown > 1)
+			cooldown--;
+	}
 	
 	public void update(double dt) {
 		if (lifetime < lifespan) {

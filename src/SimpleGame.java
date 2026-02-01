@@ -29,7 +29,6 @@ public class SimpleGame extends JFrame {
 	public boolean aKey;
 	public boolean sKey;
 	public boolean dKey;
-	public boolean space;
 
 	private Color bg = new Color(0, 128, 32);
 
@@ -59,8 +58,6 @@ public class SimpleGame extends JFrame {
 					dKey = true;
 					// System.out.println("d");
 				}
-				if (currentKey == 32) // space
-					space = true;
 			}
 
 			@Override
@@ -84,8 +81,6 @@ public class SimpleGame extends JFrame {
 					dKey = false;
 					// System.out.println("d released");
 				}
-				if (currentKey == 32) // space
-					space = false;
 			}
 
 		}
@@ -95,6 +90,7 @@ public class SimpleGame extends JFrame {
 	}
 
 	long old_time = System.nanoTime();
+
 	public void gameLoop() {
 		while (VanHelsing.alive == true) {
 			long new_time = System.nanoTime();
@@ -102,7 +98,7 @@ public class SimpleGame extends JFrame {
 			if (deltaTime <= 0 || deltaTime > 1) {
 				deltaTime = 0.016;
 			}
-			//System.out.println(deltaTime);
+			// System.out.println(deltaTime);
 
 			updateGameState(deltaTime);
 
@@ -110,7 +106,7 @@ public class SimpleGame extends JFrame {
 
 			repaint();
 			try {
-				Thread.sleep((int)(deltaTime*1000)); // in miliseconds
+				Thread.sleep((int) (deltaTime * 1000)); // in miliseconds
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -119,39 +115,45 @@ public class SimpleGame extends JFrame {
 
 	@Override
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		//draw background
+		Graphics2D g2d = (Graphics2D) g;
+		// draw background
 		g2d.setColor(bg);
 		g2d.fillRect(0, 0, WIDTH, HEIGHT);
 
-		//draw player
+		// draw player
 		if (VanHelsing.alive == true) {
-		g2d.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], 60, 80, null);
+			g2d.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1],
+					60, 80, null);
 		} else
-			g2d.drawString("game over", WIDTH/2, HEIGHT/2);
+			g2d.drawString("game over", WIDTH / 2, HEIGHT / 2);
 
 		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
 			Projectile proj = Projectile.projectiles.get(i);
-			g2d.drawImage(weapon_sprite, Map.convertPos(proj.position)[0], Map.convertPos(proj.position)[1], 40, 40, null);
+			g2d.drawImage(weapon_sprite, Map.convertPos(proj.position)[0], Map.convertPos(proj.position)[1], 40, 40,
+					null);
 		}
 
 		// enemies
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
 			Enemy enemy = Enemy.enemies.get(i);
-			g2d.drawImage(enemy_sprite, Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], 50, 50, null);
+			g2d.drawImage(enemy_sprite, Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], 50, 50,
+					null);
 		}
 
 		// xp bar
 		g2d.setColor(Color.BLUE);
-		g2d.fillRect(0,0,VanHelsing.xp.barLength, HEIGHT/10);
+		g2d.fillRect(0, 0, VanHelsing.xp.barLength, HEIGHT / 10);
 	}
 
 	public void updateGameState(double deltaTime) {
-		
-		if ((System.currentTimeMillis() - start_time) % 10000 <= 20 && spawnchance > 1) {
-			System.out.println(spawnchance);
-			spawnchance -= 2;
+
+		if ((System.currentTimeMillis() - start_time) % 10000 <= 20) {
+			if (spawnchance > 5)
+				spawnchance -= 5;
+			else if (spawnchance > 1)
+				spawnchance--;
+			System.out.println("spawnchance "+spawnchance);
 		}
 
 		// update enemy following
@@ -161,7 +163,8 @@ public class SimpleGame extends JFrame {
 
 		// add new enemies
 
-		EnemySpawner.trySpawn(WIDTH, HEIGHT,Enemy.defaultSpeed,Enemy.defaultHp,Enemy.defaultHitbox, Enemy.defaultDamage);
+		EnemySpawner.trySpawn(WIDTH, HEIGHT, Enemy.defaultSpeed, Enemy.defaultHp, Enemy.defaultHitbox,
+				Enemy.defaultDamage);
 
 		// update player's velocity
 		// up and down
@@ -179,13 +182,12 @@ public class SimpleGame extends JFrame {
 		} else
 			VanHelsing.velocity[0] = 0;
 
-		if (space == true) {
-			if (Projectile.cooldowntimer == 0 && VanHelsing.alive == true) {
-				Projectile.cooldowntimer = Projectile.cooldown; // start cooldown
-				VanHelsing.attack();
-			} else
-				Projectile.cooldowntimer--;
-		}
+		// attack
+		if (Projectile.cooldowntimer == 0 && VanHelsing.alive == true) {
+			Projectile.cooldowntimer = Projectile.cooldown; // start cooldown
+			VanHelsing.attack();
+		} else
+			Projectile.cooldowntimer--;
 
 		EnemyProjectile.collide(Enemy.enemies, Projectile.projectiles, VanHelsing);
 

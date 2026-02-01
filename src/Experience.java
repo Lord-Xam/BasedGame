@@ -22,6 +22,7 @@ public class Experience {
 		xpNextLevel+= levelIncrement;
 		System.out.println("level up");
 		barLength = 0;
+		Projectile.decreaseCooldown();
 	}
 
 	public Experience(int levelIncrement) {
