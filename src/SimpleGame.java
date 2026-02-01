@@ -9,6 +9,7 @@ public class SimpleGame extends Frame {
 
 	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
 	Image enemy_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/bat.png");
+	Image weapon_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/weapon.png");
 	// Image bg_sprite =
 	// Toolkit.getDefaultToolkit().getImage("../sprites/grass.jpg");
 
@@ -127,10 +128,8 @@ public class SimpleGame extends Frame {
 		}
 		// projectiles
 		for (int i = 0; i < Projectile.projectiles.size(); i++) {
-			g.setColor(Color.BLACK);
-			g.fillRect(Map.convertPos(Projectile.projectiles.get(i).position)[0],
-					Map.convertPos(Projectile.projectiles.get(i).position)[1], Projectile.projectiles.get(i).width,
-					Projectile.projectiles.get(i).height);
+			Projectile proj = Projectile.projectiles.get(i);
+			g.drawImage(weapon_sprite, Map.convertPos(proj.position)[0], Map.convertPos(proj.position)[1], 40, 40, null);
 		}
 		// draw enemies
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
