@@ -8,7 +8,7 @@ public class Player extends Creature {
 
 	public HpBar hp;
 
-	public int hitCooldown =10;
+	public int hitCooldown =6;
 	public int timeLeft;
 	
 	public float[] velocity = new float[2];
