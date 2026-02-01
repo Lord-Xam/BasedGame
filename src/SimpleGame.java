@@ -2,10 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class SimpleGame extends JFrame {
 
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 900;
+	private GamePanel panel;
 	public double deltaTime;
 
 	public int difficulty = 0;
@@ -38,9 +40,18 @@ public class SimpleGame extends JFrame {
 	public void startGame() {
 		setTitle("Simple Game");
 		setSize(WIDTH, HEIGHT);
+//Kai (start)
+		panel = new GamePanel();
+		add(panel);
+		panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		pack();
+		panel.setFocusable(true);
+		panel.requestFocusInWindow();
+//Due to swapping from Jframe to panel there might be some other inconsistencies, i.e. only worked with Jframe, so you might need to make other swaps.
+//End
 		setVisible(true);
 		// Add additional setup like listeners here
-		addKeyListener(new KeyAdapter() {
+		panel.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// System.out.println("Keycode: " + e.getKeyCode());
@@ -106,8 +117,8 @@ public class SimpleGame extends JFrame {
 			updateGameState(deltaTime);
 
 			old_time = new_time;
-
-			repaint();
+//Used to be just repaint()
+			panel.repaint();
 			try {
 				Thread.sleep((int) (deltaTime * 1000)); // in miliseconds
 			} catch (Exception e) {
@@ -115,13 +126,15 @@ public class SimpleGame extends JFrame {
 			}
 		}
 	}
-
+//added this class GamePanel apparently should stop stuttering
+class GamePanel extends JPanel {
 	@Override
-	public void paint(Graphics g) {
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		// draw background
 		g2d.setColor(bg);
-		g2d.fillRect(0, 0, WIDTH, HEIGHT);
+		g2d.fillRect(0, 0, getWidth(), getHeight());
 
 		// draw player
 		if (VanHelsing.alive == true) {
@@ -155,7 +168,8 @@ public class SimpleGame extends JFrame {
 
 		// xp bar
 		g2d.setColor(Color.BLUE);
-		g2d.fillRect(0, 0, VanHelsing.xp.barLength, HEIGHT / 10);
+		//Swapped HEIGHT and WIDTH with getHeight() and getWidth()
+		g2d.fillRect(0, 0, VanHelsing.xp.barLength, getHeight() / 10);
 
 
 		// death screen
@@ -167,6 +181,7 @@ public class SimpleGame extends JFrame {
 			g2d.drawString("YOU DIED", WIDTH/3 +90, HEIGHT/2);
 		}
 	}
+}
 
 	public void updateGameState(double deltaTime) {
 
