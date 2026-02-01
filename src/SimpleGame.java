@@ -91,7 +91,7 @@ public class SimpleGame extends Frame {
 
 	long old_time = System.nanoTime();
 	public void gameLoop() {
-		while (true) {
+		while (VanHelsing.alive == true) {
 			long new_time = System.nanoTime();
 			deltaTime = (new_time - old_time) / 1000000000; // in seconds
 			if (deltaTime <= 0 || deltaTime > 1) {
