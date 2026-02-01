@@ -193,8 +193,7 @@ class GamePanel extends JPanel {
 				spawnchance -= 5;
 			else if (spawnchance > 1)
 				spawnchance--;
-			if (speedboost < 50)
-				speedboost += 5;
+			speedboost += 4;
 		}
 
 		// update enemy following
