@@ -156,6 +156,16 @@ public class SimpleGame extends JFrame {
 		// xp bar
 		g2d.setColor(Color.BLUE);
 		g2d.fillRect(0, 0, VanHelsing.xp.barLength, HEIGHT / 10);
+
+
+		// death screen
+		if (VanHelsing.alive == false) {
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, HEIGHT/4, WIDTH, HEIGHT/2);
+			g2d.setColor(Color.RED);
+			g2d.setFont(new Font("Adwaita Mono", Font.BOLD, 50));
+			g2d.drawString("YOU DIED", WIDTH/3 +90, HEIGHT/2);
+		}
 	}
 
 	public void updateGameState(double deltaTime) {
