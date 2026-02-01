@@ -7,6 +7,8 @@ public class Enemy extends Creature {
 	public int timeLeft;
 	public int damage;
 
+	public HpBar hpbar;
+
 	public static int defaultHp = 10;
 	public static int defaultSpeed = 10;
 	public static int defaultHitbox = 3;
@@ -23,6 +25,7 @@ public class Enemy extends Creature {
 		this.speed = speed;
 		this.hitbox = hitbox;
 		this.damage = damage;
+		this.hpbar = new HpBar(hp);
 		enemies.add(this);
 	}
 		
@@ -34,6 +37,7 @@ public class Enemy extends Creature {
 			p.xp.addXp(defaultXpValue);
 			System.out.println("damage");
 			timeLeft = hitCooldown;
+			hpbar.length -= hp;
 		} 
 		if (health <= 0) {
 			return true;

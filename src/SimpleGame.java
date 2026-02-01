@@ -140,6 +140,10 @@ public class SimpleGame extends JFrame {
 		for (int i = 0; i < Enemy.enemies.size(); i++) {
 			Enemy enemy = Enemy.enemies.get(i);
 			g2d.drawImage(enemy_sprite, Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], 50, 50, null);
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(20+Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], enemy.hpbar.total, enemy.hpbar.height);
+			g2d.setColor(Color.RED);
+			g2d.fillRect(20+Map.convertPos(enemy.position)[0], Map.convertPos(enemy.position)[1], enemy.hpbar.length, enemy.hpbar.height);
 		}
 
 		// xp bar

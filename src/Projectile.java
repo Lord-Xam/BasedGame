@@ -11,7 +11,7 @@ public class Projectile extends Entity {
 	public int dead;
 	public int width =10;
 	public int height = 5;
-	public int damage = 100;
+	public int damage = 5;
 	public int rotation;
 
 	public static int cooldown = 50;
