@@ -5,17 +5,31 @@ public class Player extends Creature {
 	public final int defaultLevelIncrement = 100;
 
 	public Experience xp = new Experience(100);
+
+	public HpBar hp;
+
+	public int hitCooldown =10;
+	public int timeLeft;
 	
 	public float[] velocity = new float[2];
 
 	public Player(){
 		speed = 100;
 		System.out.println("hello player");
+		hp = new HpBar(health);
 	}
 
 	public void attack() {
 		new Projectile(position); //create a projectile at the players position
 	}
+
+
+	public void cooldownTick() {
+		if (timeLeft > 0) {
+			timeLeft--;
+	}
+	}
+
 
 	public void move(double dt) {
 		// if moving too fast
@@ -29,7 +43,11 @@ public class Player extends Creature {
 	}
 
 	public void hit(int damage) {
-		health -= damage;
+		if (timeLeft == 0 ) {
+			health -= damage;
+			hp.length -= damage;
+			timeLeft = hitCooldown;
+		}
 
 		if (health <=0 ) {
 			alive = false;
@@ -37,5 +55,6 @@ public class Player extends Creature {
 
 		}
 	}
+
 
 }

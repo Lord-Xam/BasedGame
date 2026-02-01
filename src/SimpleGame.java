@@ -127,6 +127,12 @@ public class SimpleGame extends JFrame {
 		if (VanHelsing.alive == true) {
 			g2d.drawImage(player_sprite, Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1],
 					60, 80, null);
+
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(-20+Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], VanHelsing.hp.total, VanHelsing.hp.height);
+			g2d.setColor(Color.BLUE);
+			g2d.fillRect(-20+Map.convertPos(VanHelsing.position)[0], Map.convertPos(VanHelsing.position)[1], VanHelsing.hp.length, VanHelsing.hp.height);
+
 		} else
 			g2d.drawString("game over", WIDTH / 2, HEIGHT / 2);
 
@@ -220,6 +226,9 @@ public class SimpleGame extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// player i frames
+		VanHelsing.cooldownTick();
 	}
 
 }

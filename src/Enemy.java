@@ -47,7 +47,6 @@ public class Enemy extends Creature {
 
 	private void cooldownTick() {
 		if (timeLeft > 0) {
-			System.out.println(timeLeft);
 			timeLeft--;
 		}
 	}
