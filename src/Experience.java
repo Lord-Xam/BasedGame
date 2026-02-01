@@ -1,3 +1,4 @@
+import java.lang.Math;
 public class Experience {
 	private int xp;
 	public int xpNextLevel;
@@ -7,12 +8,14 @@ public class Experience {
 
 	public void addXp(int x) {
 		this.xp += x;
-		barLength += ((float) xp) / xpNextLevel * SimpleGame.WIDTH;
+		barLength =  Math.round(((float) xp) / xpNextLevel  *  SimpleGame.WIDTH);
+//		System.out.println("percent = "  + ((float) xp) / xpNextLevel);
+//		System.out.println("barlen " + barLength);
 		if (xp >= xpNextLevel ) {
 			levelUp();
 		}
 
-		System.out.println("Xp : " + xp + " / " + xpNextLevel);
+//		System.out.println("Xp : " + xp + " / " + xpNextLevel);
 
 	}
 
@@ -20,7 +23,7 @@ public class Experience {
 		level++;
 		xp =0;
 		xpNextLevel+= levelIncrement;
-		System.out.println("level up");
+//		System.out.println("level up");
 		barLength = 0;
 		Projectile.decreaseCooldown();
 	}
