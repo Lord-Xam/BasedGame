@@ -41,11 +41,12 @@ public class Projectile extends Entity {
 		dead = 1;
 	}
 
-	public void hitEnemy(Enemy e) {
+	public boolean hitEnemy(Enemy e) {
 		if ((Math.abs(this.position[0] - e.position[0]) < this.width + e.hitbox) && (Math.abs(this.position[1] - e.position[1]) < this.height+ e.hitbox)) {
 			System.out.println("enemy hit");
-			e.removeHp(damage);
+			return e.removeHp(damage);
 		}
+		return false;
 
 	}
 
