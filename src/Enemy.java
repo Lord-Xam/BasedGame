@@ -32,7 +32,7 @@ public class Enemy extends Creature {
 		if (timeLeft == 0) {
 			health -= hp;
 			p.xp.addXp(defaultXpValue);
-			System.out.println("damage");
+			//System.out.println("damage");
 			timeLeft = hitCooldown;
 		} 
 		if (health <= 0) {

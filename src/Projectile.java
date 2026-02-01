@@ -51,7 +51,7 @@ public class Projectile extends Entity {
 
 	public boolean hitEnemy(Enemy e, Player p) {
 		if ((Math.abs(this.position[0] - e.position[0]) < this.width + e.hitbox) && (Math.abs(this.position[1] - e.position[1]) < this.height+ e.hitbox)) {
-			System.out.println("enemy hit");
+			//System.out.println("enemy hit");
 			return e.removeHp(damage,p);
 		}
 		return false;

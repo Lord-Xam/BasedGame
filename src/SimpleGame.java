@@ -8,6 +8,8 @@ public class SimpleGame extends JFrame {
 	public static final int HEIGHT = 900;
 	public double deltaTime;
 
+	public int difficulty = 0;
+
 	Image player_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/vanhelsing.png");
 	Image enemy_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/bat.png");
 	Image weapon_sprite = Toolkit.getDefaultToolkit().getImage("../sprites/weapon.png");
@@ -151,6 +153,8 @@ public class SimpleGame extends JFrame {
 
 		// increase difficulty
 		if ((System.currentTimeMillis() - start_time) % 10000 <= 20) {
+			difficulty++;
+			System.out.println("DIFFICULTY "+difficulty);
 			if (spawnchance > 5)
 				spawnchance -= 5;
 			else if (spawnchance > 1)
@@ -165,10 +169,12 @@ public class SimpleGame extends JFrame {
 		}
 
 		// add new enemies
-
-		EnemySpawner.trySpawn(WIDTH, HEIGHT, Enemy.defaultSpeed+speedboost, Enemy.defaultHp, Enemy.defaultHitbox,
+		
+		for (int i = 0; i < 1+difficulty/4; i++) {
+			EnemySpawner.trySpawn(WIDTH, HEIGHT, Enemy.defaultSpeed+speedboost, Enemy.defaultHp, Enemy.defaultHitbox,
 				Enemy.defaultDamage);
-
+		}
+		
 		// update player's velocity
 		// up and down
 		if (wKey == true) {
@@ -188,7 +194,9 @@ public class SimpleGame extends JFrame {
 		// attack
 		if (Projectile.cooldowntimer == 0 && VanHelsing.alive == true) {
 			Projectile.cooldowntimer = Projectile.cooldown; // start cooldown
-			VanHelsing.attack();
+			for (int i = 0; i < 1+difficulty/6; i++) {
+				VanHelsing.attack();
+			}
 		} else
 			Projectile.cooldowntimer--;
 
